@@ -9,9 +9,9 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/", func(c *gin.Context) {
-		word := c.Query("word")
-
-		c.JSON(http.StatusOK, gin.H{"word": word})
+		c.JSON(http.StatusOK, gin.H{
+			"message": "pong",
+		})
 	})
 
 	r.Run(":8080")
