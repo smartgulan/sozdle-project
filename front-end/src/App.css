@@ -1,42 +1,105 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Общий стиль для фона */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5; /* Цвет для всей страницы */
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f5f5f5; /* Тот же фон, что и у приложения */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  background-color: #ffffff; /* Белый фон внутри приложения */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для выделения */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Заголовок */
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: black; /* Черный цвет текста */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Игровое поле */
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.row {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
 }
 
-.card {
-  padding: 2em;
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: white;
+  color: black; /* Черный цвет текста */
 }
 
-.read-the-docs {
-  color: #888;
+/* Клавиатура */
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.keyboard-line {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.key {
+  width: 40px;
+  height: 40px;
+  background-color: #ddd;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black; /* Черный цвет текста */
+}
+
+.key.large-key {
+  width: 80px; /* Увеличенная ширина для кнопки Enter */
+}
+
+.key:hover {
+  background-color: #bbb;
 }
