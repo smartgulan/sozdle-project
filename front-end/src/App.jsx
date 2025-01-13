@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [board, setBoard] = useState(Array(6).fill('')); // 6 строк для слов
+  const keyboard = [
+    'QWERTYUIOP',
+    'ASDFGHJKL',
+    '>ZXCVBNM<',
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="background"> {/* Контейнер для фона */}
+      <div className="app">
+        <h1 className="title">Sozdle</h1>
+        
+        {/* Игровое поле */}
+        <div className="board">
+          {board.map((row, rowIndex) => (
+            <div key={rowIndex} className="row">
+              {Array(5).fill('').map((_, colIndex) => (
+                <div key={colIndex} className="cell"></div>
+              ))}
+            </div>
+          ))}
+        </div>
+        
+        {/* Клавиатура */}
+        <div className="keyboard">
+          {keyboard.map((line, lineIndex) => (
+            <div key={lineIndex} className="keyboard-line">
+              {line.split('').map((key) => (
+                <button
+                  key={key}
+                  className={`key ${key === '>' ? 'large-key' : ''}`} // Добавляем класс для "Enter"
+                  onClick={() => console.log(key === '>' ? 'Enter' : key)} // Заменяем ">" на "Enter"
+                >
+                  {key === '>' ? 'Enter' : key === '<' ? '←' : key} {/* Обработка символов */}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
