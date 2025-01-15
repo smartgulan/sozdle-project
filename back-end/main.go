@@ -10,6 +10,7 @@ import (
 	"unicode"
 
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 var words map[string]bool
@@ -29,6 +30,9 @@ func main() {
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{"result": compare(word, target)})
+		c.JSON(http.StatusOK, gin.H{
+			"message": "pong",
+		})
 	})
 
 	r.Run(":8080")
