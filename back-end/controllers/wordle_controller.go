@@ -25,3 +25,7 @@ func HandleGuess(c *gin.Context) {
 	result := models.Compare(word, target)
 	c.JSON(http.StatusOK, gin.H{"result": result})
 }
+
+func GetWord(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"word": target})
+}

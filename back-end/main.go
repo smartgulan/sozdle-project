@@ -10,5 +10,6 @@ func main() {
 
 	// Routes
 	r.GET("/", controllers.HandleGuess)
+	r.GET("/getWord", controllers.GetWord)
 	r.Run(":8080")
 }
