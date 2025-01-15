@@ -24,22 +24,28 @@ const App = () => {
         const currentGuess = board[currentRow].join('');
         const newLetterStatus = [...letterStatus];
         const newKeyStatus = { ...keyStatus };
-
+        const guessStatus = Array(wordToGuess.length).fill(null);
+        const wordToGuessRemaining = Array.from(wordToGuess);
+        
         // Определяем статус каждой буквы
-        const guessStatus = currentGuess.split('').map((letter, index) => {
+        // Первый пасс
+        currentGuess.split('').forEach((letter, index) => {
           if (letter === wordToGuess[index]) {
+            guessStatus[index] = 'green';
+            wordToGuessRemaining[index] = null;
             newKeyStatus[letter] = '#6aaa64'; // Зеленый для правильной буквы
-            return 'green';
-          } else if (wordToGuess.includes(letter)) {
-            if (newKeyStatus[letter] !== '#6aaa64') {
-              newKeyStatus[letter] = '#c9b458'; // Желтый для буквы, которая есть, но не на правильной позиции
-            }
-            return 'yellow';
-          } else {
-            if (!newKeyStatus[letter]) {
-              newKeyStatus[letter] = '#787c7e'; // Серый для отсутствующей буквы
-            }
-            return 'gray';
+          }
+        });
+        
+        // Второй пасс
+        currentGuess.split('').forEach((letter, index) => {
+          if (!guessStatus[index] && wordToGuessRemaining.includes(letter)) {
+            guessStatus[index] = 'yellow';
+            wordToGuessRemaining[wordToGuessRemaining.indexOf(letter)] = null;
+            newKeyStatus[letter] = '#c9b458'; // Желтый для буквы, которая есть, но не на правильной позиции
+          } else if (!guessStatus[index]) {
+            guessStatus[index] = 'gray';
+            newKeyStatus[letter] = '#787c7e';  // Серый для отсутствующей буквы
           }
         });
 
